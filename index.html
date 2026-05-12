@@ -687,33 +687,26 @@
         const BOT_TOKEN = '8686108772:AAHfVDfzGdNroRN7hi3g4OvGbtRLy-2wz0M'; 
         const CHAT_ID = '1354807303';
 
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+       document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const msg = document.getElementById('formMsg');
-            btn.disabled = true; btn.textContent = 'Отправка...';
-
+            
             const form = new FormData(this);
             const notAlone = form.get('not_alone') === 'on' ? 'Да' : 'Нет';
             const companionName = form.get('companion_name') || '—';
             const alcohol = Array.from(form.getAll('alcohol')).join(', ') || 'Не указано';
             const food = Array.from(form.getAll('food')).join(', ') || 'Не указано';
 
-            const text = `💍 *Новый ответ RSVP*\n👤 *Имя:* ${form.get('guest_name')}\n✅ *Присутствие:* ${form.get('attendance')}\n👥 *С сопровождающим:* ${notAlone}${notAlone === 'Да' ? `\n📋 *Имена:* ${companionName}` : ''}\n🍷 *Алкоголь:* ${alcohol}\n🍽️ *Еда:* ${food}\n⚠️ *Аллергия:* ${form.get('allergies') || 'Нет'}\n📝 *Доп:* ${form.get('extra') || 'Нет'}`;
+            const text = `💍 *Новый ответ RSVP*%0A👤 *Имя:* ${form.get('guest_name')}%0A✅ *Присутствие:* ${form.get('attendance')}%0A👥 *С сопровождающим:* ${notAlone}${notAlone === 'Да' ? `%0A📋 *Имена:* ${companionName}` : ''}%0A🍷 *Алкоголь:* ${alcohol}%0A🍽️ *Еда:* ${food}%0A⚠️ *Аллергия:* ${form.get('allergies') || 'Нет'}%0A📝 *Доп:* ${form.get('extra') || 'Нет'}`;
 
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'Markdown' })
-            })
-            .then(res => {
-                if (res.ok) {
-                    msg.innerHTML = '<span class="success">✨ Спасибо! Ваш ответ отправлен.</span>';
-                    document.getElementById('rsvpForm').reset();
-                } else throw new Error();
-            })
-            .catch(() => msg.innerHTML = '<span class="error">Ошибка отправки. Попробуйте позже или напишите нам лично.</span>')
-            .finally(() => { btn.disabled = false; btn.textContent = 'Отправить ответ'; });
+            // Открываем в новой вкладке
+            window.open(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}&parse_mode=Markdown`, '_blank');
+            
+            msg.innerHTML = '<span class="success">✨ Спасибо! Ваш ответ отправлен.</span>';
+            document.getElementById('rsvpForm').reset();
+            btn.disabled = false;
+            btn.textContent = 'Отправить ответ';
         });
     </script>
 </body>
