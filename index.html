@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -72,7 +72,7 @@
         }
         .accent { color: var(--gold); }
 
-                /* Hero обновленный */
+        /* Hero обновленный */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: linear-gradient(180deg, var(--pink) 0%, var(--bg) 100%);
@@ -285,7 +285,31 @@
 
         /* Форма RSVP */
         .rsvp-section { background: linear-gradient(180deg, var(--bg) 0%, var(--pink) 100%); }
-        .form-wrap { max-width: 620px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 22px; box-shadow: 0 12px 35px rgba(212,175,55,0.1); border: 1px solid var(--gold-light); position: relative; z-index: 1; }
+        .form-wrap { 
+            max-width: 620px; 
+            margin: 0 auto; 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 22px; 
+            box-shadow: 0 12px 35px rgba(212,175,55,0.1); 
+            border: 1px solid var(--gold-light); 
+            position: relative; 
+            z-index: 1; 
+        }
+        /* Стили для iframe Яндекс.Формы */
+        .form-wrap iframe {
+            width: 100%;
+            min-height: 700px;
+            border: none;
+            border-radius: 18px;
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .form-wrap iframe {
+                min-height: 850px;
+            }
+        }
+
         .form-group { margin-bottom: 22px; text-align: left; }
         .form-group label { display: block; font-size: 0.9rem; margin-bottom: 8px; font-weight: 500; }
         .form-group input[type="text"], .form-group textarea, .form-group select {
@@ -328,7 +352,7 @@
         @media (max-width: 480px) {
             .timer-box { min-width: 70px; padding: 14px 8px; }
             .timer-num { font-size: 2rem; }
-            .form-wrap { padding: 25px 15px; }
+            .form-wrap { padding: 15px; }
         }
     </style>
 </head>
@@ -341,9 +365,8 @@
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-        <section class="hero">
+    <section class="hero">
         <!-- Фон: Геометрия и Цветы -->
-                <!-- Фон: Геометрия и Цветы -->
         <div class="hero-overlay">
             <svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                 <!-- Шестиугольник -->
@@ -418,13 +441,12 @@
         
         <!-- ЗАМЕНИТЬ: src="ваше-общее-фото.jpg" -->
         <div class="photo-card">
-            <!-- ЗАМЕНИТЬ: src="фото-жениха.jpg" -->
-                <img src="couple.jpg" 
-                    alt="Пётр и Юлия"
-                    width="320" 
-                    height="400"
-                    loading="lazy"
-                    decoding="async">
+            <img src="couple.jpg" 
+                alt="Пётр и Юлия"
+                width="320" 
+                height="400"
+                loading="lazy"
+                decoding="async">
              <div class="photo-name">Пётр и Юлия</div>
         </div>
         <div class="scroll-hint fade-in">↓ Листайте вниз ↓</div>
@@ -452,7 +474,6 @@
             <div class="gold-divider"></div>
             <div class="couple-photos">
                 <div class="photo-card">
-                    <!-- ЗАМЕНИТЬ: src="фото-жениха.jpg" -->
                     <img src="groom.jpg" 
                         alt="Пётр"
                         width="320" 
@@ -462,7 +483,6 @@
                     <div class="photo-name">Пётр</div>
                 </div>
                 <div class="photo-card">
-                    <!-- ЗАМЕНИТЬ: src="фото-невесты.jpg" -->
                     <img src="bride.jpg" 
                         alt="Юлия"
                         width="320" 
@@ -509,7 +529,6 @@
             <!-- Регистрация -->
             <div class="loc-card">
                 <div class="loc-photo">
-                    <!-- ЗАМЕНИ: src="фото-загс.jpg" -->
                     <img src="registry_office.jpg" 
                         alt="ЗАГС Розовый зал"
                         width="600" 
@@ -531,7 +550,6 @@
             <!-- Банкет -->
             <div class="loc-card">
                 <div class="loc-photo">
-                    <!-- ЗАМЕНИ: src="фото-ресторан.jpg" -->
                     <img src="restaurant.jpg" 
                         alt="Ресторан ШАТО"
                         width="600" 
@@ -553,77 +571,32 @@
     </div>
 </section>
 
-    <section class="rsvp-section">
-        <div class="container fade-in">
-            <h2>Подтвердите присутствие</h2>
-            <div class="gold-divider"></div>
-            <div class="form-wrap">
-                <form id="rsvpForm">
-                    <div class="form-group">
-                        <label>Ваше имя и фамилия *</label>
-                        <input type="text" name="guest_name" required placeholder="Иван Петров">
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-label" style="display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500;">
-                            <input type="checkbox" id="notAlone" name="not_alone" style="width: 20px; height: 20px; accent-color: var(--gold); cursor: pointer;">
-                            <span>Я приду не один</span>
-                        </label>
-                        
-                        <div id="companionField" class="companion-field" style="display: none; margin-top: 15px; padding: 15px; background: var(--pink); border-radius: 10px; border-left: 3px solid var(--gold);">
-                            <label for="companionName" style="display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 500;">
-                                Имя и фамилия сопровождающего:
-                            </label>
-                            <input 
-                                type="text" 
-                                id="companionName" 
-                                name="companion_name" 
-                                placeholder="Например: Анна Петрова"
-                                style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem;"
-                            >
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Сможете ли вы присутствовать? *</label>
-                        <select name="attendance" required>
-                            <option value="" disabled selected>Выберите вариант</option>
-                            <option value="Да, с радостью!">Да, с радостью!</option>
-                            <option value="К сожалению, нет">К сожалению, нет</option>
-                            <option value="Сообщу позже">Сообщу позже</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Предпочтения по алкоголю</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="alcohol" value="Вино"> Вино белое</label>
-                            <label><input type="checkbox" name="alcohol" value="Вино"> Вино красное</label>
-                            <label><input type="checkbox" name="alcohol" value="Шампанское"> Шампанское</label>
-                            <label><input type="checkbox" name="alcohol" value="Крепкий (Виски/Коньяк)"> Крепкий (Водка/Коньяк)</label>
-                            <label><input type="checkbox" name="alcohol" value="Не пью"> Не пью</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Предпочтения по еде</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="food" value="Мясо"> Мясо</label>
-                            <label><input type="checkbox" name="food" value="Рыба"> Рыба</label>
-                            <label><input type="checkbox" name="food" value="Вегетарианское"> Вегетарианское</label>
-                            <label><input type="checkbox" name="food" value="Без ограничений"> Без ограничений</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Аллергии или непереносимость</label>
-                        <textarea name="allergies" rows="2" placeholder="Укажите, если есть"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Дополнительная информация</label>
-                        <textarea name="extra" rows="2" placeholder="Особые пожелания..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit" id="submitBtn">Отправить ответ</button>
-                    <div class="form-msg" id="formMsg"></div>
-                </form>
-            </div>
+<section class="rsvp-section">
+    <div class="container fade-in">
+        <h2>Подтвердите присутствие</h2>
+        <div class="gold-divider"></div>
+        
+        <!-- Красивая карточка с кнопкой -->
+        <div class="form-wrap" style="text-align: center; padding: 50px 30px;">
+            <p style="margin-bottom: 25px; font-size: 1.05rem; color: #555; line-height: 1.7;">
+                Заполните анкету гостя - это займёт меньше минуты.<br>
+                Форма откроется в новой вкладке.
+            </p>
+            
+            <a href="https://forms.yandex.ru/u/6a04bcb01f1eb52ad5316586/" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn-submit"
+               style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: auto; min-width: 300px; text-decoration: none;">
+               <span>📝</span> Заполнить анкету гостя
+            </a>
+            
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #888;">
+                🔒 Безопасная форма от Яндекс.Форм
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer>
         <span class="hearts">♡ ♡ ♡</span>
@@ -658,63 +631,7 @@
             if (audio.paused) { audio.play(); audioBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>'; }
             else { audio.pause(); audioBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>'; }
         });
-
-        // Показ/скрытие поля для сопровождающего
-        const notAloneCheckbox = document.getElementById('notAlone');
-        const companionField = document.getElementById('companionField');
-        const companionInput = document.getElementById('companionName');
-
-        notAloneCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                companionField.style.display = 'block';
-                companionInput.setAttribute('required', 'required');
-                // Плавная анимация появления
-                companionField.style.opacity = '0';
-                companionField.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    companionField.style.transition = 'all 0.3s ease';
-                    companionField.style.opacity = '1';
-                    companionField.style.transform = 'translateY(0)';
-                }, 10);
-            } else {
-                companionField.style.display = 'none';
-                companionInput.removeAttribute('required');
-                companionInput.value = '';
-            }
-        });
-
-        // Форма в Telegram
-        const BOT_TOKEN = '8686108772:AAHfVDfzGdNroRN7hi3g4OvGbtRLy-2wz0M'; 
-        const CHAT_ID = '1354807303';
-
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const msg = document.getElementById('formMsg');
-            btn.disabled = true; btn.textContent = 'Отправка...';
-
-            const form = new FormData(this);
-            const notAlone = form.get('not_alone') === 'on' ? 'Да' : 'Нет';
-            const companionName = form.get('companion_name') || '—';
-            const alcohol = Array.from(form.getAll('alcohol')).join(', ') || 'Не указано';
-            const food = Array.from(form.getAll('food')).join(', ') || 'Не указано';
-
-            const text = `💍 *Новый ответ RSVP*\n👤 *Имя:* ${form.get('guest_name')}\n✅ *Присутствие:* ${form.get('attendance')}\n👥 *С сопровождающим:* ${notAlone}${notAlone === 'Да' ? `\n📋 *Имена:* ${companionName}` : ''}\n🍷 *Алкоголь:* ${alcohol}\n🍽️ *Еда:* ${food}\n⚠️ *Аллергия:* ${form.get('allergies') || 'Нет'}\n📝 *Доп:* ${form.get('extra') || 'Нет'}`;
-
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'Markdown' })
-            })
-            .then(res => {
-                if (res.ok) {
-                    msg.innerHTML = '<span class="success">✨ Спасибо! Ваш ответ отправлен.</span>';
-                    document.getElementById('rsvpForm').reset();
-                } else throw new Error();
-            })
-            .catch(() => msg.innerHTML = '<span class="error">Ошибка отправки. Попробуйте позже или напишите нам лично.</span>')
-            .finally(() => { btn.disabled = false; btn.textContent = 'Отправить ответ'; });
-        });
+        // ⚠️ Код формы (Telegram, companion toggle) удалён — теперь используется Яндекс.Форма
     </script>
 </body>
 </html>
