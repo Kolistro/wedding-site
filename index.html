@@ -354,6 +354,134 @@
             .timer-num { font-size: 2rem; }
             .form-wrap { padding: 15px; }
         }
+        /* ===== TIMELINE ===== */
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--gold), transparent);
+            opacity: 0.4;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+
+        .timeline-time {
+            flex: 0 0 80px;
+            text-align: right;
+            padding-right: 25px;
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-time {
+            text-align: left;
+            padding-right: 0;
+            padding-left: 25px;
+        }
+
+        .timeline-dot {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px var(--gold-light);
+            position: relative;
+            z-index: 2;
+            margin: 4px 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: 25px;
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 16px;
+            border: 1px solid var(--gold-light);
+            box-shadow: 0 4px 15px rgba(212,175,55,0.06);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            padding-left: 25px;
+            padding-right: 25px;
+            text-align: right;
+        }
+
+        .timeline-content h4 {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .timeline-note {
+            display: block;
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Адаптив для мобильных */
+        @media (max-width: 768px) {
+            .timeline::before { left: 22px; }
+            
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .timeline-time,
+            .timeline-item:nth-child(odd) .timeline-time {
+                text-align: left;
+                padding-left: 45px;
+                padding-right: 0;
+                flex: 0 0 auto;
+                font-size: 1.2rem;
+            }
+            
+            .timeline-dot {
+                position: absolute;
+                left: 16px;
+                margin: 6px 0;
+            }
+            
+            .timeline-content,
+            .timeline-item:nth-child(odd) .timeline-content {
+                padding: 18px 20px;
+                text-align: left;
+                margin-left: 45px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -560,11 +688,88 @@
                 <div class="loc-content">
                     <h3>Банкет</h3>
                     <div class="loc-info">
-                        <div class="time">🥂 Время уточняется</div>
+                        <div class="time">🥂 16:30</div>
                         <span class="place">📍 Ресторан «ШАТО»</span>
                         <span class="address">1-я Северная ул., 95В, Омск</span>
                     </div>
                     <iframe class="loc-map" src="https://yandex.ru/map-widget/v1/?ll=73.372893%2C55.004339&z=17" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--bg);">
+    <div class="container fade-in">
+        <h2>Расписание дня</h2>
+        <div class="gold-divider"></div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-time">12:20</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Регистрация в ЗАГСе</h4>
+                    <p>Розовый зал, пр. Мира, 100А</p>
+                    <span class="timeline-note">🤫 Количество гостей ограничено. Присутствие не обязательно — мы поймём, если вы захотите отдохнуть перед праздником!</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">13:00</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Фотосессия молодожёнов</h4>
+                    <p>Прогулка по живописным местам Омска</p>
+                    <span class="timeline-note">☕ Свободное время для гостей: отдохните, выпейте кофе, подготовьтесь к торжеству</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">15:15</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Сбор в концертном зале «Гурман»</h4>
+                    <p>Фото с братьями, сёстрами и близкими друзьями</p>
+                    <span class="timeline-note">📍 Пожалуйста, прибудьте к указанному времени по адресу</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">16:30</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Фуршет и сбор гостей</h4>
+                    <p>Лёгкие закуски, напитки, неспешное общение</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">17:00</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Выездная регистрация</h4>
+                    <p>Торжественная церемония</p>
+                    <span class="timeline-note">💍 Самый важный момент — будьте с нами!</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">17:30</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Фотосессия с гостями</h4>
+                    <p>Общие и групповые снимки на память</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">18:00</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Начало банкета</h4>
+                    <p>Ужин, тосты, музыка и танцы</p>
+                    <span class="timeline-note">🎉 Праздник в самом разгаре!</span>
                 </div>
             </div>
         </div>
